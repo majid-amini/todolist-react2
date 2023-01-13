@@ -46,7 +46,9 @@ function App() {
 
   //cancle Update
 
-  const cancleUpdate = () => {};
+  const cancelUpdate = () => {
+    setUpdateData("");
+  };
 
   //change Task For Update
 
@@ -83,7 +85,7 @@ function App() {
           <button className="btn-edit" onClick={updateTask}>
             Edit
           </button>
-          <button className="btn-cancel">Cancel</button>
+          <button className="btn-cancel" onClick={cancelUpdate}>Cancel</button>
         </div>
       ) : (
         /* addTask form  */

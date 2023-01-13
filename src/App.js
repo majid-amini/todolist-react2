@@ -65,6 +65,7 @@ function App() {
     let filteredTasks = [...toDo].filter((task) => task.id !== updateData.id);
     let allItems = [...filteredTasks, updateData];
     setTodo(allItems);
+    setUpdateData('');
   };
 
   return (

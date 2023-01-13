@@ -1,11 +1,9 @@
 import "./App.css";
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrash,
-  faPen,
-  faCircleCheck,
-} from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+
+import AddTaskForm from "./components/AddTaskForm";
+import Update from "./components/Update";
+import ToDo from "./components/Todo";
 function App() {
   //tasks for todolist
   const [toDo, setTodo] = useState([]);
@@ -76,79 +74,33 @@ function App() {
 
       {/* editTask form  */}
       {updateData && updateData ? (
-        <div className="editTaskForm">
-          <input
-            type="text"
-            value={updateData && updateData.title}
-            onChange={(e) => changeTask(e)}
-          ></input>
-          <button className="btn-edit" onClick={updateTask}>
-            Edit
-          </button>
-          <button className="btn-cancel" onClick={cancelUpdate}>Cancel</button>
-        </div>
+        <Update
+          updateData={updateData}
+          changeTask={changeTask}
+          updateTask={updateTask}
+          cancelUpdate={cancelUpdate}
+        />
       ) : (
         /* addTask form  */
-        <div className="addTaskForm">
-          <input
-            value={newtask}
-            onChange={(e) => setNewTask(e.target.value)}
-            type="text"
-          ></input>
-          <button onClick={addTask}>Add task</button>
-        </div>
+        <AddTaskForm
+          newtask={newtask}
+          setNewTask={setNewTask}
+          addTask={addTask}
+        />
       )}
 
       {/* Display todos */}
       <br></br>
       <div className="taskContainer">
         {toDo && toDo.length ? "" : "no tasks..."}
-
-        {toDo &&
-          toDo
-            .sort((a, b) => (a.id > b.id ? 1 : -1))
-            .map((task, index) => {
-              return (
-                <React.Fragment key={task.id}>
-                  <div className="tasksItems">
-                    <div className={task.status ? "done" : ""}>
-                      <span className="taskNumber">{index + 1}</span>
-                      <span className="taskContent">{task.title}</span>
-                    </div>
-
-                    <div className="iconsTotal">
-                      <span
-                        title="Completed / Not Completed"
-                        onClick={(e) => completedTask(task.id)}
-                      >
-                        <FontAwesomeIcon icon={faCircleCheck} />
-                      </span>
-
-                      {task.status ? null : (
-                        <span
-                          title="Edit"
-                          onClick={() =>
-                            setUpdateData({
-                              id: task.id,
-                              title: task.title,
-                              status: task.status ? true : false,
-                            })
-                          }
-                        >
-                          <FontAwesomeIcon icon={faPen} />
-                        </span>
-                      )}
-                      <span title="Delete" onClick={() => deleteTask(task.id)}>
-                        <FontAwesomeIcon icon={faTrash} />
-                      </span>
-                    </div>
-                  </div>
-                </React.Fragment>
-              );
-            })}
+        <ToDo
+          setUpdateData={setUpdateData}
+          toDo={toDo}
+          completedTask={completedTask}
+          deleteTask={deleteTask}
+        />
       </div>
     </div>
   );
 }
-
 export default App;

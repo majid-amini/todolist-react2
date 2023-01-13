@@ -1,0 +1,105 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  background-color: #2d2d2d;
+}
+.App {
+  text-align: center;
+  margin: 2rem auto;
+  font-size: 1.5rem;
+  color: snow;
+}
+.addTaskForm,
+.editTaskForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto 0 auto;
+  padding: 1rem;
+  gap: 1rem;
+}
+.addTaskForm input,
+button,
+.editTaskForm input,
+.edittaskForm button {
+  padding: 1rem 1.5rem;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+}
+.addTaskForm button,
+.editTaskForm button {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.addTaskForm button:hover {
+  background-color: green;
+  color: snow;
+}
+.btn-edit {
+  background-color: green;
+}
+.btn-cancel {
+  background-color: crimson;
+}
+.taskContainer {
+  width: 50%;
+  margin: 0.5rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  margin-top: 0.5rem;
+  border-radius: 1rem;
+}
+
+.tasksItems {
+  width: 50rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: #2d2d2d;
+  border-radius: 1rem;
+  border: 0.1rem solid snow;
+  transition: all 0.3s ease-in-out;
+}
+.tasksItems div span {
+  padding: 1rem;
+}
+.taskNumber {
+  background-color: aqua;
+  padding: 1.5rem;
+  border-radius: 50%;
+  font-weight: bold;
+  color: #2d2d2d;
+  font-size: 1.8rem;
+}
+.taskContent {
+  text-shadow: 0.2rem 0.1rem 0.4rem blue;
+  font-size: 1.8rem;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+.tasksItems .done {
+  text-decoration: line-through;
+  opacity: 0.3;
+}
+.iconsTotal span {
+  padding: 0 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.iconsTotal span:hover {
+  color: green;
+}

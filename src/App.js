@@ -65,31 +65,38 @@ function App() {
     let filteredTasks = [...toDo].filter((task) => task.id !== updateData.id);
     let allItems = [...filteredTasks, updateData];
     setTodo(allItems);
-    setUpdateData('');
+    setUpdateData("");
   };
 
   return (
     <div className="App">
       <h2>TODO List</h2>
-      <div className="addTaskForm">
-        <input
-          value={newtask}
-          onChange={(e) => setNewTask(e.target.value)}
-          type="text"
-        ></input>
-        <button onClick={addTask}>Add task</button>
-      </div>
-      <div className="editTaskForm">
-        <input
-          type="text"
-          value={updateData && updateData.title}
-          onChange={(e) => changeTask(e)}
-        ></input>
-        <button className="btn-edit" onClick={updateTask}>
-          Edit
-        </button>
-        <button className="btn-cancel">Cancel</button>
-      </div>
+
+      {/* editTask form  */}
+      {updateData && updateData ? (
+        <div className="editTaskForm">
+          <input
+            type="text"
+            value={updateData && updateData.title}
+            onChange={(e) => changeTask(e)}
+          ></input>
+          <button className="btn-edit" onClick={updateTask}>
+            Edit
+          </button>
+          <button className="btn-cancel">Cancel</button>
+        </div>
+      ) : (
+        /* addTask form  */
+        <div className="addTaskForm">
+          <input
+            value={newtask}
+            onChange={(e) => setNewTask(e.target.value)}
+            type="text"
+          ></input>
+          <button onClick={addTask}>Add task</button>
+        </div>
+      )}
+
       {/* Display todos */}
       <br></br>
       <div className="taskContainer">

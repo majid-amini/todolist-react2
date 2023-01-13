@@ -39,6 +39,9 @@ button,
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+.editTaskForm button:hover {
+  color: snow;
+}
 .addTaskForm button:hover {
   background-color: green;
   color: snow;

@@ -50,11 +50,22 @@ function App() {
 
   //change Task For Update
 
-  const changetask = (e) => {};
+  const changeTask = (e) => {
+    let newEntry = {
+      id: updateData.id,
+      title: e.target.value,
+      status: updateData.status ? true : false,
+    };
+    setUpdateData(newEntry);
+  };
 
   //update Task
 
-  const updatetask = () => {};
+  const updateTask = () => {
+    let filteredTasks = [...toDo].filter((task) => task.id !== updateData.id);
+    let allItems = [...filteredTasks, updateData];
+    setTodo(allItems);
+  };
 
   return (
     <div className="App">
@@ -68,8 +79,14 @@ function App() {
         <button onClick={addTask}>Add task</button>
       </div>
       <div className="editTaskForm">
-        <input type="text"></input>
-        <button className="btn-edit">Edit</button>
+        <input
+          type="text"
+          value={updateData && updateData.title}
+          onChange={(e) => changeTask(e)}
+        ></input>
+        <button className="btn-edit" onClick={updateTask}>
+          Edit
+        </button>
         <button className="btn-cancel">Cancel</button>
       </div>
       {/* Display todos */}
@@ -98,7 +115,16 @@ function App() {
                       </span>
 
                       {task.status ? null : (
-                        <span title="Edit">
+                        <span
+                          title="Edit"
+                          onClick={() =>
+                            setUpdateData({
+                              id: task.id,
+                              title: task.title,
+                              status: task.status ? true : false,
+                            })
+                          }
+                        >
                           <FontAwesomeIcon icon={faPen} />
                         </span>
                       )}
